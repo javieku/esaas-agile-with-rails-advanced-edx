@@ -8,6 +8,8 @@ gem 'activemodel', '4.2.1'
 
 group :test do
   gem 'fakeweb'
+  gem 'guard'
+  gem 'guard-rspec'
   gem 'rspec', '3.3.0'
   gem 'rspec-its'
   gem 'rspec-collection_matchers'
