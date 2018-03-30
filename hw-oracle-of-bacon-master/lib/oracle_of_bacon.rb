@@ -27,7 +27,7 @@ class OracleOfBacon
   def initialize(api_key='')
     @from = "Kevin Bacon"
     @to = "Kevin Bacon"
-    @api_key = "38b99ce9ec87"
+    @api_key = api_key.empty? ? "38b99ce9ec87" : api_key
     @errors = ActiveModel::Errors.new(self)
   end
 
@@ -46,10 +46,9 @@ class OracleOfBacon
   end
 
   def make_uri_from_arguments
-    # your code here: set the @uri attribute to properly-escaped URI
-    #   constructed from the @from, @to, @api_key arguments
+    @uri = "http://oracleofbacon.org/cgi-bin/xml?p=#{CGI::escape(@api_key)}&a=#{CGI::escape(@from)}&b=#{CGI::escape(@to)}"
   end
-      
+
   class Response
     attr_reader :type, :data
     # create a Response object from a string of XML markup.
