@@ -20,7 +20,7 @@ module NavigationHelpers
     when /^the edit page for "([^"]*)"$/
       "/admin/content/edit/#{Article.find_by_title($1).id}"
     when /^the view page for "([^"]*)"$/
-      Article.find_by_title($1).title_url
+      "/page/#{Article.find_by_title($1).title_url}"
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

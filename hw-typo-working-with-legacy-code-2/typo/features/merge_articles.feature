@@ -10,7 +10,7 @@ should be preserved, but merged together into one article.
 Background:
     Given the blog is set up
     
-Scenario: A non-admin cannot merge articles
+Scenario: A non-admin cannot merge two articles
     Given I am logged as user
     And the following articles exist:
     			| title              | published | 
@@ -18,32 +18,7 @@ Scenario: A non-admin cannot merge articles
     When I go to the view page for "My trip to Tailand" 
     Then I should not see "merge_with"
 
-Scenario: Merging articles content
-    Given I am logged into the admin panel
-    And the following articles exist:
-    			| title             | published | body  |
-			    | My trip to Spain  | true      | body1 |
-                | Visiting Madrid   | true      | body2 |
-    And I am on the edit page for "My trip to Spain"
-    When I fill in "merge_with" with "2"
-    And I press "Merge"
-    Then I should be on "merged article" page
-    And I should see "body1"
-    And I should see "body2" 
-
-Scenario: Merging articles preserves one of the original titles
-    Given I am logged into the admin panel
-    And the following articles exist:
-    			| title             | published | body  |
-			    | My trip to Spain  | true      | body1 |
-                | Visiting Madrid   | true      | body2 |
-    And I am on the edit page for "My trip to Spain"
-    When I fill in "merge_with" with "2"
-    And I press "Merge"
-    Then I should be on "merged article" page
-    And I should see "My trip to Spain"
-
-Scenario: Merging articles preserves comments from original articles 
+Scenario: When articles are merged, the merged article should contain the text of both previous articles
     Given I am logged into the admin panel
     And the following articles exist:
     			| title             | published | body  |
@@ -52,7 +27,11 @@ Scenario: Merging articles preserves comments from original articles
     And article "My trip to Spain" has 2 comments
     And article "Visiting Madrid" has 1 comments
     And I am on the edit page for "My trip to Spain"
-    When I fill in "merge_with" with "2"
+    When I fill in "merge_with" with "4"
     And I press "Merge"
-    Then I should be on "merged article" page
+    When I follow "Show"
+    Then I should see "body1"
+    And I should see "body2" 
+    And I should see "My trip to Spain"
     And I should see "3 comments"
+    
