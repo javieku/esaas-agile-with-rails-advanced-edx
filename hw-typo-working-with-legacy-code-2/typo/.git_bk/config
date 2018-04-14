@@ -1,0 +1,8 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[remote "heroku-cedar-14"]
+	url = https://git.heroku.com/typo-saas-12354.git
+	fetch = +refs/heads/*:refs/remotes/heroku-cedar-14/*
