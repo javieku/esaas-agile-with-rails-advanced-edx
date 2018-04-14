@@ -12,7 +12,7 @@
       </p>
     </div>
 
-    <% if @article.user.twitter and @article.user.show_twitter %>
+    <% if @article.user and @article.user.twitter and @article.user.show_twitter %>
     <h2 id='twitter'>
       <%= _("If you liked this article you can %s", link_to(_("add me to Twitter"), "http://twitter.com/#{@article.user.twitter}"))%>
     </h2>
